@@ -6,5 +6,5 @@ class DatabaseLogger(Handler):
         return True
     
     def handle(self, update: dict) -> bool:
-        bot.database_client.persist_updates(update)
+        bot.database_client.persist_update(update)
         return True
