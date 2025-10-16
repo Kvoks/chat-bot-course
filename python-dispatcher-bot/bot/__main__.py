@@ -7,7 +7,7 @@ from bot.long_polling import start_long_polling
 if __name__ == "__main__":
     try:
         dispatcher = Dispatcher()
-        dispatcher.add_handler(DatabaseLogger(), MessageEcho(), MessagePhotoEcho())
+        dispatcher.add_handlers(DatabaseLogger(), MessageEcho(), MessagePhotoEcho())
         start_long_polling(dispatcher)
     except KeyboardInterrupt:
         print("\nBye!")

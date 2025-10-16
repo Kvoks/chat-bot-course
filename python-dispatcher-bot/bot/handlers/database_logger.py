@@ -3,7 +3,7 @@ from bot.handler import Handler
 
 class DatabaseLogger(Handler):
     def can_handle(self, update: dict) -> bool:
-        return update
+        return True
     
     def handle(self, update: dict) -> bool:
         bot.database_client.persist_updates(update)
