@@ -1,12 +1,12 @@
 import bot.telegram_client
-from bot.handler import Handler
+from bot.handlers.handler import Handler, HandlerStatus
 
 
 class MessagePhotoEcho(Handler):
     def can_handle(self, update: dict) -> bool:
         return "message" in update and "photo" in update["message"]
     
-    def handle(self, update: dict) -> bool:
+    def handle(self, update: dict) -> HandlerStatus:
         photo = update["message"]["photo"][-1]
         file_id = photo["file_id"]
         caption = ""
@@ -19,4 +19,4 @@ class MessagePhotoEcho(Handler):
             photo=file_id,
             caption=caption
         )
-        return False
+        return HandlerStatus.STOP
