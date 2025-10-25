@@ -1,6 +1,7 @@
 import json
 
 import bot.database_client
+from bot.keyboards import PIZZA_NAME_KEYBOARD
 import bot.telegram_client
 from bot.handlers.handler import Handler, HandlerStatus
 
@@ -28,29 +29,6 @@ class MessageStart(Handler):
         bot.telegram_client.sendMessage(
             chat_id=update["message"]["chat"]["id"],
             text="Please choose pizza name",
-            reply_markup=json.dumps(
-                {
-                    "inline_keyboard": [
-                        [
-                            {"text": "Margherita", "callback_data": "pizza_margherita"},
-                            {"text": "Pepperoni", "callback_data": "pizza_pepperoni"},
-                        ],
-                        [
-                            {
-                                "text": "Quattro Stagioni",
-                                "callback_data": "pizza_quattro_stagioni",
-                            },
-                            {
-                                "text": "Capricciosa",
-                                "callback_data": "pizza_capricciosa",
-                            }
-                        ],
-                        [
-                            {"text": "Diavola", "callback_data": "pizza_diavola"},
-                            {"text": "Prosciutto", "callback_data": "pizza_prosciutto"},
-                        ],
-                    ],
-                },
-            ),
+            reply_markup=PIZZA_NAME_KEYBOARD,
         )
         return HandlerStatus.STOP
